@@ -3,16 +3,43 @@ import java.util.Scanner;
 public class Recursion1 {
 
 	 public static void main(String args[]) {
-		 //BasicAlgorithmPratice();
-		 System.out.println("input number:");
-		 Scanner sc =new Scanner(System.in);
-		 int count = 0 ;
-		 System.out.println("\n");
-		 //System.out.println(RecursionFactorial(sc.nextInt()));
-		 
+		//BasicAlgorithmPratice();
+		System.out.println("input number:");
+		Scanner sc =new Scanner(System.in);
+		System.out.println("\n");
+		//System.out.println(RecursionFactorial(sc.nextInt()));
+		//Fibonacci
 		// System.out.println(RecursionFibonacci(sc.nextInt(),0,0,1));
 		// System.out.println(RecursionFibonacci_beakjoon(sc.nextInt());
+		//hanoi
+		//input : number of stuff
+		//output: times move stuff
+		/*
+		 * Stack stackA = new Stack(input); 
+		 * Stack stackB = new Stack(input); Stack
+		 * stackC = new Stack(input);
+
+		 * for(int i=input;i>0;i--) stackA.push(i);
+		 */
+
+		RecursionHanoi(sc.nextInt(),1,3);
+		
 	 }
+
+		private static void RecursionHanoi(int input,int from,int to) {
+			// TODO Auto-generated method stub
+			int mid = 6 - from - to;
+			if(input==1) {
+				System.out.print(from + " " + to+"\n");
+			}
+			else {
+				RecursionHanoi(input -1,from,mid);
+				RecursionHanoi(1,from,to);
+				RecursionHanoi(input-1,mid,to);
+				
+			}
+		
+		}	 
  /*
  private static int RecursionFibonacci_beakjoon(int a) {
  
@@ -40,6 +67,7 @@ public class Recursion1 {
 	}
 }
 */
+
 
 	/*	private static int RecursionFactorial(int a) {
 		// TODO Auto-generated method stub
@@ -120,3 +148,6 @@ public class Recursion1 {
 	}
 	
 }
+
+
+
