@@ -1,7 +1,39 @@
 package codingtest.prepare.implement;
 
+import java.util.Arrays;
+
 public class ImplementationStorage {
     public static void main(String[] args) {
+        //한번만 등장한 문자 (문자열에서 딱 한번만 등장한 알파벳의 사전순정렬 반환)
+        String s = "" ;
+        int[] answer = new int[s.length()];
+        String result ="";
+        for(int i =0; i< s.length(); i++) {
+            answer[s.indexOf(s.charAt(i))] +=1 ;
+        }
+
+        for(int i = 0;i<s.length();i++){
+            if(answer[i] == 1) {
+                result+=s.charAt(i);
+            }
+
+        }
+
+
+        char[] chArr = result.toCharArray();
+        Arrays.sort(chArr);
+
+        System.out.println( new String(chArr));
+
+    }
+
+
+    }
+
+    /*
+    상하좌우
+     */
+    public void updawnleftright() {
         //상하좌우 n*n정사각형에서 lurd 지도를 보고 어디에 위치할지
         int n = 5;
         String[] strRLUD = {"R", "R", "R", "U", "D", "D"};
@@ -49,3 +81,4 @@ public class ImplementationStorage {
         System.out.println( result_ud+ " " + result_lr );
     }
 }
+
