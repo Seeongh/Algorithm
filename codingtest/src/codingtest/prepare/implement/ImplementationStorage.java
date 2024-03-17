@@ -4,28 +4,14 @@ import java.util.Arrays;
 
 public class ImplementationStorage {
     public static void main(String[] args) {
-        //한번만 등장한 문자 (문자열에서 딱 한번만 등장한 알파벳의 사전순정렬 반환)
-        String s = "" ;
-        int[] answer = new int[s.length()];
-        String result ="";
-        for(int i =0; i< s.length(); i++) {
-            answer[s.indexOf(s.charAt(i))] +=1 ;
-        }
 
-        for(int i = 0;i<s.length();i++){
-            if(answer[i] == 1) {
-                result+=s.charAt(i);
-            }
+        //받은 배열에서 n까지의 배열만 반환
+        int[] num_list ; //받은 배열
+        int[] answer = {};
 
-        }
+        answer = Arrays.copyOfRange(num_list,0,n);
 
 
-        char[] chArr = result.toCharArray();
-        Arrays.sort(chArr);
-
-        System.out.println( new String(chArr));
-
-    }
 
 
     }
@@ -51,6 +37,7 @@ public class ImplementationStorage {
                 }
             }
         }
+
 
 
 //
@@ -80,5 +67,31 @@ public class ImplementationStorage {
 //
         System.out.println( result_ud+ " " + result_lr );
     }
+
+    public void oneChar(){
+        //한번만 등장한 문자 (문자열에서 딱 한번만 등장한 알파벳의 사전순정렬 반환)
+        String s = "" ;
+        int[] answer = new int[s.length()];
+        String result ="";
+        for(int i =0; i< s.length(); i++) {
+            answer[s.indexOf(s.charAt(i))] +=1 ;
+        }
+
+        for(int i = 0;i<s.length();i++){
+            if(answer[i] == 1) {
+                result+=s.charAt(i);
+            }
+
+        }
+
+
+        char[] chArr = result.toCharArray();
+        Arrays.sort(chArr);
+
+        System.out.println( new String(chArr));
+
+    }
+
+}
 }
 
