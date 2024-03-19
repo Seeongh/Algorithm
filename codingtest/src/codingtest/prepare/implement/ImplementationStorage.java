@@ -6,8 +6,9 @@ public class ImplementationStorage {
     public static void main(String[] args) {
 
         //받은 배열에서 n까지의 배열만 반환
-        int[] num_list ; //받은 배열
+        int[] num_list = new int[0]; //받은 배열
         int[] answer = {};
+        int n=0;
 
         answer = Arrays.copyOfRange(num_list,0,n);
 
@@ -92,6 +93,5 @@ public class ImplementationStorage {
 
     }
 
-}
 }
 
