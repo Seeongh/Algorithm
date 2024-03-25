@@ -10,16 +10,17 @@ public class GreedyStorage{
         int temp = 0;
         int result = 0;
 
-        for(int j =0 ;j <arr.length; j++) {
-            for(int i =j+1;i<arr.length-1; i++){
 
-                if(arr[j] < arr[i+1]){
-                    temp=arr[i+1];
-                    arr[i+1] = arr[j];
-                    arr[j]  = temp;
-                }
-            }
-        }
+//        for(int j =0 ;j <arr.length; j++) {
+//            for(int i =j+1;i<arr.length-1; i++){
+//
+//                if(arr[j] < arr[i+1]){
+//                    temp=arr[i+1];
+//                    arr[i+1] = arr[j];
+//                    arr[j]  = temp;
+//                }
+//            }
+//        }
 
 
 
@@ -41,5 +42,18 @@ public class GreedyStorage{
         result = (((arr[0]*k)+arr[1])*temp) + ((m%(k+1))*arr[0]);
         System.out.println(result);
 
+    }
+
+    class Solution {
+        public long solution(int a, int b) {
+            long answer = 0;
+            int tmp = 0;
+            if(b<a) {tmp = a; a= b; b= tmp;}
+
+            for(int i = a; i <= b; i++) {
+                answer += i;
+            }
+            return answer;
+        }
     }
 }
