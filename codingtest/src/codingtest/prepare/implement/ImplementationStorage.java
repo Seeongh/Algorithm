@@ -5,12 +5,19 @@ import java.util.Arrays;
 public class ImplementationStorage {
     public static void main(String[] args) {
 
-        //받은 배열에서 n까지의 배열만 반환
-        int[] num_list = new int[0]; //받은 배열
-        int[] answer = {};
-        int n=0;
+        //딱 떨어지는 배열 개선
+        int[] arr = new int[]{1,36,2,3,4};
+        int divisor = 5;
+      
+        int[] answer = Arrays.stream(arr).filter(factor -> factor % divisor == 0).toArray();
+        if(answer.length == 0) answer = new int[] {-1};
 
-        answer = Arrays.copyOfRange(num_list,0,n);
+        //받은 배열에서 n까지의 배열만 반환
+       // int[] num_list = new int[0]; //받은 배열
+        //int[] answer = {};
+        //int n=0;
+
+        //answer = Arrays.copyOfRange(num_list,0,n);
 
 
 
@@ -93,5 +100,31 @@ public class ImplementationStorage {
 
     }
 
+    //딱 떨어지는 값만 배열로 반환하기
+    public void arr_resolve(){
+        int[] arr = new int[]{1,36,2,3,4};
+        int divisor = 5;
+
+        int count = 0;
+        for(int i =0 ; i<arr.length; i++) {
+            if(arr[i]%divisor == 0) {
+                count++;
+            }
+        }
+
+        int[] answer = new int[count];
+        count = 0;
+
+        for(int i =0 ; i<arr.length; i++) {
+            if(arr[i]%divisor == 0) {
+                answer[count++] = arr[i];
+            }
+        }
+
+        if(count == 0) { answer = new int[1]; answer[0] = -1;}
+
+        Arrays.sort(answer);
+
+    }
 }
 
