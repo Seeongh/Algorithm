@@ -8,7 +8,7 @@ public class ImplementationStorage {
         //딱 떨어지는 배열 개선
         int[] arr = new int[]{1,36,2,3,4};
         int divisor = 5;
-      
+
         int[] answer = Arrays.stream(arr).filter(factor -> factor % divisor == 0).toArray();
         if(answer.length == 0) answer = new int[] {-1};
 
