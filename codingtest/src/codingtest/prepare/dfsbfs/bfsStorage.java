@@ -10,6 +10,22 @@ import java.util.Queue;
  */
 public class bfsStorage {
 
+    /**
+     *  Scanner sc = new Scanner(System.in);
+     *
+     *         // N, M을 공백을 기준으로 구분하여 입력 받기
+     *         n = sc.nextInt();
+     *         m = sc.nextInt();
+     *         sc.nextLine(); // 버퍼 지우기
+     *
+     *         // 2차원 리스트의 맵 정보 입력 받기
+     *         for (int i = 0; i < n; i++) {
+     *             String str = sc.nextLine();
+     *             for (int j = 0; j < m; j++) {
+     *                 graph[i][j] = str.charAt(j) - '0';
+     *             }
+     *         }
+     */
     static int n = 5, m = 6;
     // 이동할 네 가지 방향 정의 (상, 하, 좌, 우)
     public static int dx[] = {-1, 1, 0, 0};
