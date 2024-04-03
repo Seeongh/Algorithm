@@ -1,8 +1,32 @@
 package codingtest.prepare.dfsbfs;
 
 import java.util.Stack;
-import java.util.Arrays;
 
+class tmpnode {
+    int i;
+    int j ;
+
+    public tmpnode(int i , int j) {
+        this.i = i;
+        this.j = j;
+    }
+    public int getI() {
+        return this.i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public int getJ() {
+        return this.j;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
+    }
+
+}
 public class dfsPratice {
 
     static int answer;
@@ -13,7 +37,7 @@ public class dfsPratice {
     static boolean[][] chk;
     static int n, m ;
     static int end = 0;
-    static Stack<Integer> stack= new Stack<Integer>();
+    static Stack<tmpnode> stack= new Stack<>();
 
     public static void main(String[] args) {
         maps = new int[][]{{1,1,1,0,0,0}, {1, 0, 1, 0, 1,0}, {1, 0, 1, 1, 1,1}, {0, 1, 1, 1, 0,1}};
@@ -25,36 +49,42 @@ public class dfsPratice {
         //y축 index, x축 index
         dfs(0,0);
 
-        answer = stack.size();
-        if(answer == 0 ) answer = -1;
+        if(!chk[n-1][m-1]) answer = -1;
         //if(maps[n-1][m-1] != 0) answer = -1;
         System.out.println(answer);
     }
 
     public static void dfs(int i, int j) {
         //제약 조건
-        if(end == 1|| i <0 || i== n || j<0 || j ==m ){
+        if( end == 1 || i < 0 || i == n || j< 0 || j == m ){
             return ;
+        }
+
+        else if((i == (n-1)) && (j== (m-1))){
+            chk[i][j] = true;
+            answer++;
+            end = 1;
+            return;
         }
 
         if(!chk[i][j]) {
 
             System.out.println("들어온  " + i+" , " + j);
             chk[i][j] = true;
+
+            stack.push(new tmpnode(i,j));
+
             //수행 동작
             if(maps[i][j] == 0) {
-                int tmp= stack.pop();
-                i = tmp/10;
-                j = tmp%10;
-                System.out.println("pop or stay : " + i+", " + j);
+                tmpnode tmpo = stack.pop();
+                System.out.println("pop stack  " + tmpo.getI()+" , " + tmpo.getJ());
+                return;
+            }
+            else {
+                answer++;
             }
 
-                stack.push(i * 10 + j);
 
-            if((i == (n-1)) && (j== (m-1))) {
-                System.out.println("end");
-                end = 1;
-            }
             //오른쪽, 아래, 위, 왼쪽 가면서 확인
             dfs(i, j+1);
             dfs(i+1, j);
@@ -62,8 +92,9 @@ public class dfsPratice {
             dfs(i, j-1);
         }
 
-
     }
+
+
     //경우의 수
 
     public void Solution2() {
@@ -90,3 +121,4 @@ public class dfsPratice {
         dfs(index+1, sum - numbers[index]);
     }
 }
+
