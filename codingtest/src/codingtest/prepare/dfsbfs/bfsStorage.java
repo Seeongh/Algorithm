@@ -52,6 +52,8 @@ public class bfsStorage {
                 for (int i = 0; i < 4; i++) {
                     int nx = x + dx[i];
                     int ny = y + dy[i];
+                    System.out.println("큐에서 뺀값 : " + x+ " ," + y);
+                    System.out.println("확인한 값 : " + nx+ " ," + ny);
                     // 미로 찾기 공간을 벗어난 경우 무시
                     if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
                     // 벽인 경우 무시
