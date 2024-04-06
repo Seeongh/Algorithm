@@ -1,5 +1,7 @@
 package codingtest.prepare.dfsbfs;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 class tmpnode {
@@ -40,58 +42,81 @@ public class dfsPratice {
     static Stack<tmpnode> stack= new Stack<>();
 
     public static void main(String[] args) {
-        maps = new int[][]{{1,1,1,0,0,0}, {1, 0, 1, 0, 1,0}, {1, 0, 1, 1, 1,1}, {0, 1, 1, 1, 0,1}};
+        //maps = new int[][]{{1,1,1,0,0,0}, {1, 0, 1, 0, 1,0}, {1, 0, 1, 1, 1,1}, {0, 1, 1, 1, 0,1}};
+//        maps = new int[][] {{1, 1, 0, 0},
+//                            {1, 1, 1, 0},
+//                            {0, 0, 1, 0},
+//                            {0, 0, 0, 1}};
+
+        maps = new int[][] {{1, 1, 0},
+                            {1, 1, 0},
+                            {0, 0, 1}};
         n = maps.length;
-        m = maps[0].length;
+        Queue<tmpnode> queue = new LinkedList<>();
 
-        chk = new boolean[n][m];
+        int[] dx = {-1,1,0,0};
+        int[] dy = {0,0,-1,1};
 
-        //y축 index, x축 index
-        dfs(0,0);
 
-        if(!chk[n-1][m-1]) answer = -1;
+        for(int a =0; a<n; a++) {
+            for(int b =0 ; b<n; b++) {
+                if(maps[a][b] != 0 ) {
+                    queue.offer(new tmpnode(a,b));
+                    System.out.println("처음 1: " + a+", " + b);
+                    while(!queue.isEmpty()) {
+                        tmpnode t = queue.poll();
+                        int x = t.getI();
+                        int y = t.getJ();
+
+                        if(maps[x][y] == 1) {
+                            maps[x][y] = 0;
+                            for(int i = 0; i<4; i++) {
+                                int nx = x + dx[i] ;
+                                int ny = y + dy[i] ;
+
+                                if( nx < 0  || ny < 0 || nx == n || ny == n) continue;
+                                if(maps[nx][ny] == 0 ) continue;
+                                if(maps[nx][ny] == 1) {
+                                    maps[nx][ny]  = 0 ;
+
+                                    queue.offer(new tmpnode(nx,ny)) ;
+                                }
+                            }
+                            answer++;
+                        }
+
+                    }
+                }
+            }
+        }
+
         //if(maps[n-1][m-1] != 0) answer = -1;
         System.out.println(answer);
     }
 
-    public static void dfs(int i, int j) {
+    public static int dfs(int i, int j) {
         //제약 조건
-        if( end == 1 || i < 0 || i == n || j< 0 || j == m ){
-            return ;
+        if(  (i < 0) || (i == n) || (j < 0) || (j == n) ){
+            return 0 ;
         }
 
-        else if((i == (n-1)) && (j== (m-1))){
-            chk[i][j] = true;
-            answer++;
-            end = 1;
-            return;
+        if(i==2 && j == 3) {
+            System.out.println("잉? "+ maps[i][j]);
         }
 
-        if(!chk[i][j]) {
-
-            System.out.println("들어온  " + i+" , " + j);
-            chk[i][j] = true;
-
-            stack.push(new tmpnode(i,j));
-
-            //수행 동작
-            if(maps[i][j] == 0) {
-                tmpnode tmpo = stack.pop();
-                System.out.println("pop stack  " + tmpo.getI()+" , " + tmpo.getJ());
-                return;
-            }
-            else {
-                answer++;
-            }
-
-
+        if(maps[i][j] == 1) {
+            maps[i][j] = 0;
+            System.out.println("1인 i이랑 j :" + i+"," + j);
             //오른쪽, 아래, 위, 왼쪽 가면서 확인
             dfs(i, j+1);
             dfs(i+1, j);
             dfs(i-1, j);
             dfs(i, j-1);
+
+            return 1;
         }
 
+        return 0;
     }
 
 
