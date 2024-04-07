@@ -36,57 +36,37 @@ public class dfsPratice {
     static int[] numbers;
 
     static int[][] maps;
-    static boolean[][] chk;
+    static boolean[]chk;
     static int n, m ;
     static int end = 0;
     static Stack<tmpnode> stack= new Stack<>();
 
     public static void main(String[] args) {
         //maps = new int[][]{{1,1,1,0,0,0}, {1, 0, 1, 0, 1,0}, {1, 0, 1, 1, 1,1}, {0, 1, 1, 1, 0,1}};
-//        maps = new int[][] {{1, 1, 0, 0},
-//                            {1, 1, 1, 0},
+//        maps = new int[][] {{1, 1, 0,0},
+//                            {1, 1, 0, 1}, //1,3
 //                            {0, 0, 1, 0},
-//                            {0, 0, 0, 1}};
+//                            {0, 1, 0, 0}  };
 
-        maps = new int[][] {{1, 1, 0},
-                            {1, 1, 0},
-                            {0, 0, 1}};
+        maps = new int[][] {{1, 1, 0, 1},
+                            {1, 1, 0, 0}, //1,3
+                            {0, 0, 1, 0},
+                            {1, 0, 0, 0}};
         n = maps.length;
-        Queue<tmpnode> queue = new LinkedList<>();
+        chk = new boolean[n];
+//
+//        for(int i = 0; i<maps.length; i++ ){
+//            for(int j =0 ; j <maps.length; j++) {
+//                if(maps[i][j] != 0 ) {
+//                    answer += dfs(i,j);
+//                }
+//            }
+//        }
 
-        int[] dx = {-1,1,0,0};
-        int[] dy = {0,0,-1,1};
-
-
-        for(int a =0; a<n; a++) {
-            for(int b =0 ; b<n; b++) {
-                if(maps[a][b] != 0 ) {
-                    queue.offer(new tmpnode(a,b));
-                    System.out.println("처음 1: " + a+", " + b);
-                    while(!queue.isEmpty()) {
-                        tmpnode t = queue.poll();
-                        int x = t.getI();
-                        int y = t.getJ();
-
-                        if(maps[x][y] == 1) {
-                            maps[x][y] = 0;
-                            for(int i = 0; i<4; i++) {
-                                int nx = x + dx[i] ;
-                                int ny = y + dy[i] ;
-
-                                if( nx < 0  || ny < 0 || nx == n || ny == n) continue;
-                                if(maps[nx][ny] == 0 ) continue;
-                                if(maps[nx][ny] == 1) {
-                                    maps[nx][ny]  = 0 ;
-
-                                    queue.offer(new tmpnode(nx,ny)) ;
-                                }
-                            }
-                            answer++;
-                        }
-
-                    }
-                }
+        for(int i =0 ; i<maps.length; i++) {
+            if(!chk[i]) {
+                answerdfs(i);
+                answer++;
             }
         }
 
@@ -94,14 +74,20 @@ public class dfsPratice {
         System.out.println(answer);
     }
 
+    public static void answerdfs(int i) {
+        chk[i] = true;
+
+        for(int j = 0; j < n ; j ++ ) {
+            if(!chk[j] && maps[i][j] == 1) {
+                answerdfs(j);
+            }
+        }
+
+    }
     public static int dfs(int i, int j) {
         //제약 조건
         if(  (i < 0) || (i == n) || (j < 0) || (j == n) ){
             return 0 ;
-        }
-
-        if(i==2 && j == 3) {
-            System.out.println("잉? "+ maps[i][j]);
         }
 
         if(maps[i][j] == 1) {
