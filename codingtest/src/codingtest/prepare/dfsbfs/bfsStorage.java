@@ -67,6 +67,13 @@ public class bfsStorage {
             }
             // 가장 오른쪽 아래까지의 최단 거리 반환
         System.out.println(graph[n - 1][m - 1]);
+            for(int a= 0; a<n ; a++) {
+                System.out.print("{");
+                for(int b=0; b <m ; b++) {
+                    System.out.print(graph[a][b]+", ");
+                }
+                System.out.println("}");
+            }
     }
 }
 
