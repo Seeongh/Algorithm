@@ -12,10 +12,83 @@ public class dfsbfsPratice {
     static int n;
    static String[] words = {"hot", "dot","dog","lot","log","cog"};
     //static String[] words = {"hot", "dot","dog","lot","log"};
+
+    static String[][] tickets = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO"}};
+    static String smallStr= "" ;
+    static boolean[] chk= null;
     public static void main(String[] args) {
         //start -> target으로 단어 변경하기
+        int n = tickets.length;
+        int m = 2;
+        int cnt = 0; int result =0 ;
+        String[] answer = new String[n+1];
+       chk= new boolean[n];
+        String tmp="";
 
-        n = start.length();
+        Queue<String> q = new LinkedList<>();
+        q.offer("ICN"); //INC
+
+//        while(!q.isEmpty()){
+//            tmp = q.poll();
+//            System.out.println("cnt: " + cnt);
+//            answer[cnt++] = tmp;
+//            for(int i =0 ;i < n; i++) {
+//                if(!chk[i] && tmp.equals(tickets[i][0])) {
+//
+//                    if(dfs3(tickets[i][1],0)){
+//                        result = i;
+//                    }
+//                }
+//            }
+//
+//            q.offer(smallStr);
+//            System.out.println(smallStr);
+//            chk[result]=true;
+//            smallStr = "";
+//
+//        }
+
+        smallStr = "ICN";
+        while(cnt <= n){
+            //tmp = q.poll();
+            answer[cnt++] = smallStr;
+
+            smallStr = "";
+
+            for(int i =0 ;i < n; i++) {
+                if(!chk[i] && tmp.equals(tickets[i][0])) {
+                    if(dfs3(tickets[i][1],0)){
+                        result = i;
+                        smallStr = tickets[i][1];
+                        System.out.println(smallStr);
+                    }
+                }
+            }
+            // answer[cnt++] = tmp;
+            //q.offer(smallStr);
+            chk[result]=true;
+
+        }
+      //  Arrays.stream(answer)
+       //         .forEach(i -> System.out.println(i));
+    }
+    public static boolean dfs3(String compareStr, int index){
+        if(index < 3)  {
+            if(smallStr.equals("")|| (smallStr.charAt(index) > compareStr.charAt(index) )){
+               
+                return true;
+            }
+            else{
+                return dfs3(compareStr, index+1);
+            }
+        }
+
+        return false;
+    }
+
+    // 알파벳 start-> target으로 바꾸기
+    public void Solution() {
+    n = start.length();
         String tmp ="";
         Queue<nodes> q = new LinkedList<>();
         int[] chk = new int[words.length];
