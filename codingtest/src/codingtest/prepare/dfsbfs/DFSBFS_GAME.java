@@ -7,7 +7,6 @@ public class DFSBFS_GAME {
     static int[][] rectangle = {{1, 1, 7, 4}, {3, 2, 5, 5}, {4, 3, 6, 9}, {2, 6, 8, 8}};
     static int characterX = 1, characterY = 3; //캐릭터 위치
     static int itemX = 7, itemY = 8; //목표 위치
-
     public static void main(String[] args) {
         //가장 짧은 경로 구하기
         int len  =0 ;
@@ -20,12 +19,12 @@ public class DFSBFS_GAME {
 
         int[][] chk = new int[len+1][len+1];
 
+        chk[characterX][characterY] = 0;
         int[] dx = {-1, 0, 1, 0}; //x= 좌우
         int[] dy = {0, 1, 0, -1}; //y= 위아래
 
         Queue<gameNode> q = new LinkedList<>();
         q.offer(new gameNode(characterX, characterY));
-
         while (!q.isEmpty()) {
             gameNode tmp = q.poll();
 
@@ -34,16 +33,9 @@ public class DFSBFS_GAME {
                 int ny = tmp.j + dy[a];
 
                 if(nx<0||ny<0||nx>len || ny > len) continue; //범위를 벗어나면 안됨
-                if(chk[nx][ny] > 0) continue;
-                if(findRange(nx,ny,0)) {
+                if(findRange(nx, ny) > 0) {
                     q.offer(new gameNode(nx,ny));
-                    chk[nx][ny] =1;
-                    chk[nx][ny] += chk[tmp.i][tmp.j];
-
-//                    if (nx == itemX && ny == itemY) {
-//                        q.clear();
-//                        break;
-//                    }
+                    chk[nx][ny] = chk[tmp.i][tmp.j] +1;
                 }
             }
         }
@@ -58,38 +50,40 @@ public class DFSBFS_GAME {
         System.out.println(chk[itemX][itemY]);
     }
 
+    public static int findRange(int x, int y) {
 
-    public static boolean findRange(int x, int y, int i) {
-        if(i > rectangle.length) { //끝까지 다 돌았는데 다 중첩됨
-            return false;
-        }
-        int[] tmp = rectangle[i];
-
-        if ((x == tmp[0] && ( y >= tmp[1] && y <= tmp[3])) ||
-            (x ==tmp[2] && ( y >= tmp[1] && y <= tmp[3])) ||
-            (x == tmp[0] && ( y >= tmp[1] && y <= tmp[3])) ||
-            (x ==tmp[2] && ( y >= tmp[1] && y <= tmp[3]))
-
-        ){
-
-                if(findRange(x,y, i+1)) { //중첩거르기
-                    return false;
+        int[] tmp;
+        int result = 0;
+        for(int i =0 ;i <rectangle.length; i++) {
+            tmp = rectangle[i];
+            if( x < tmp[0] ||  x > tmp[2] || y <tmp[1] || y > tmp[3]) continue; //범위에도 안듦
+            else{ //범위에는 듦
+                if ((x == tmp[0]) ||
+                    (x == tmp[2]) ||
+                    (y == tmp[1]) ||
+                    (y == tmp[3])) { //모서리
+                    System.out.println(" "+ x+", " +y);
+                    result++;
                 }
-
-                return true;
+                else{ //영역
+                    result = 0;
+                    break;
+                }
             }
         }
-        return false;
+
+        return result;
+
     }
 }
 
 
 
 class gameNode {
-    int i ; //x축
-    int j ; //y축
+    public int i ; //x축
+    public int j ; //y축
 
-    gameNode(int i , int j ) {
+    public gameNode(int i , int j ) {
         this.i = i;
         this.j = j;
     }
