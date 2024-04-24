@@ -20,13 +20,11 @@ public class DFSBFS_GAME {
 
         int[][] chk = new int[len+1][len+1];
 
-        chk[characterX][characterY] = 0;
-
         int[] dx = {-1, 0, 1, 0}; //x= 좌우
         int[] dy = {0, 1, 0, -1}; //y= 위아래
         Queue<gameNode> q = new LinkedList<>();
         q.offer(new gameNode(characterX, characterY));
-
+        gameNode prevNode = null;
         while (!q.isEmpty()) {
             gameNode tmp = q.poll();
 
@@ -35,13 +33,14 @@ public class DFSBFS_GAME {
                 int ny = tmp.j + dy[a];
 
                 if(nx<0||ny<0||nx>len || ny > len) continue; //범위를 벗어나면 안됨
-                if(chk[nx][ny] < chk[tmp.i][tmp.j]) continue;
-                
+                if(  ) continue;
+
                 if(findRange(nx, ny) > 0) {
                     q.offer(new gameNode(nx,ny));
                     chk[nx][ny] = chk[tmp.i][tmp.j] +1;
                 }
             }
+            prevNode = new gameNode(tmp.i, tmp.j);
         }
 
         for(int i =0 ; i < chk.length ; i++) {
