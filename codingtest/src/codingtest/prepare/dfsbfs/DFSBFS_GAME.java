@@ -33,7 +33,6 @@ public class DFSBFS_GAME {
                 int ny = tmp.j + dy[a];
 
                 if(nx<0||ny<0||nx>len || ny > len) continue; //범위를 벗어나면 안됨
-                if(  ) continue;
 
                 if(findRange(nx, ny) > 0) {
                     q.offer(new gameNode(nx,ny));
