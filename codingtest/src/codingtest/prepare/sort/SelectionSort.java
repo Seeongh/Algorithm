@@ -5,6 +5,7 @@ package codingtest.prepare.sort;
  * - 가장 작은 데이터를 선택해 맨 앞에있는 데이터와 바꾸고,
  * 그 다음 작은 데이터를 선택해 앞에서 두번째 데이터와 바꾸는 과정 반복
  */
+
 public class SelectionSort {
 
     static int maxlen = 10;
@@ -14,32 +15,34 @@ public class SelectionSort {
         int tmp = 0;
 
         //가장 작은 데이터 선택하기
-        for(int i =0 ; i < arr.length; i++) {
+        for(int i =0 ; i < arr.length - 1; i++) {
             int minIndex = getMindata(i, i+1); //작은 위치 찾기
-
+            System.out.println(i+"번쨰 시도, 작은인덱스"+minIndex);
             //교환
             tmp = arr[i] ;
             arr[i] = arr[minIndex];
             arr[minIndex] = tmp;
         }
+
+        for(int i:arr) {
+            System.out.print(i+" ");
+        }
     }
 
     //매개변수 : 인덱스, 제일 작은 수
     public static int getMindata(int index, int minIndex){
-
-        if(index == maxlen ) {
+        //{7,5,9,0,3,1,6,2,4,8}
+        if(index == maxlen  ) {
             return minIndex;
         }
 
         if(arr[index] - arr[minIndex] > 0 ) {
             // 현재 index가 더 큼
-            getMindata(index+1, minIndex);
+            return  getMindata(index+1, minIndex);
         }
         else {
-            getMindata(index+1, index);
+            return getMindata(index+1, index);
         }
-
-        return minIndex;
     }
 }
 
