@@ -1,5 +1,7 @@
 package codingtest.prepare.sort;
 
+import java.util.Arrays;
+
 /**
  * 삽입 정렬
  * 구현난이도는 선택정렬보단 높지만 시간적으로 효율적
@@ -15,8 +17,9 @@ public class InsertSort {
     public static void main(String[] args) {
         int[] result = new int[maxlen];
         int tmp = 0;
+        int target = 0;
 
-        for(int i = 0 ; i < maxlen; i++) {
+        for(int i = 1 ; i < maxlen; i++) {
             //i의 이전 배열 중 어디에 들어가야 할지 정해야 됨
             //앞은 늘 정렬되어있음을 가정
 
@@ -26,20 +29,25 @@ public class InsertSort {
             //4. 임시변수에 대상을 넣고,
             //5. i부터 한칸뒤씩 이동한다.
             //6. 완료되면  작은수 뒷수에 임시변수 값을 넣는다.
-            
 
-            for(int j = i+1 ; j >= 0  ;j--) {
-                if(arr[i] <= arr[j]|| j == 0) {
-                    //정렬된 곳 중 i보다 작은곳을 찾음
-                    tmp = arr[i+1]; //들어갈 변수 임시저장
-                    arr[i+1] = arr[j]; //내 변수
-                    arr[j] = tmp;
+            //{7,5,9,0,3,1,6,2,4,8};
+            //i = 선택한 수 , j = 정렬된 수 반복
+            target = arr[i];
+            for(int j = i;  j > 0  ; j--) {
+                if (arr[j - 1] < target) { // 왼쪽 숫자가 타켓보다 작으면
+                    if (j == i) { // 근데 맨 처음시작일때는 그냥 다음 숫자로 넘어감
+                        break;
+                    }
+
+                    arr[j+1]= arr[j]; //현재 값 오른쪽으로 미뤄놓고
+                    arr[j] = target; //현재값에 타겟 넣어놓고
+                    break;
                 }
+
+                //왼쪽 숫자가 타겟보다 크면
+                arr[j] = arr[j-1]; //한칸씩 뒤로!
             }
         }
     }
 
-    public static void makeInsertIndex(int ) {
-
-    }
 }
