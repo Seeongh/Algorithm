@@ -1,5 +1,6 @@
 package codingtest.prepare.sort;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 /**
@@ -48,6 +49,9 @@ public class InsertSort {
                 arr[j] = arr[j-1]; //한칸씩 뒤로!
             }
         }
+
+        Arrays.stream(arr).forEach(x -> System.out.println(x));
+
     }
 
 }
