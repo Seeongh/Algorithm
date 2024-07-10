@@ -12,4 +12,21 @@ package codingtest.prepare.sort;
  * 이렇게 되면 왼쪽엔 피벗보다 작은수 오른쪾엔 피벗보다 큰 수가 위치함.
  */
 public class QuickSort {
+
+    static int[] arr = {7,5,9,0,3,1,6,2,4,8};
+
+    static int maxlen = arr.length;
+
+    public static void main(String[] args) {
+        int pivot = 0 ;
+        int left =  0 ;
+        int right = 0 ;
+
+        for(int i =0 ; i< maxlen; i++) {
+            //첫번째 인자를 pivot으로 두기
+            pivot = arr[i];
+
+
+        }
+    }
 }
