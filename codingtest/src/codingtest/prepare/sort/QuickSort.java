@@ -1,5 +1,6 @@
 package codingtest.prepare.sort;
 
+
 /**
  * 퀵 정렬
  * 기준(피벗)을 설정한 후, 큰수와 작은 수를 교환한 후 리스트를 반으로 나누는 방식
@@ -19,14 +20,34 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int pivot = 0 ;
-        int left =  0 ;
-        int right = 0 ;
+        int leftInd =  0 ;
+        int rightInd = 0 ;
+        int tmp = 0;
 
-        for(int i =0 ; i< maxlen; i++) {
+
+
             //첫번째 인자를 pivot으로 두기
-            pivot = arr[i];
+            pivot = arr[0]; //7
+            leftInd = 0; //시작점
+            rightInd = maxlen-1; //끝점
+            //{7,5,9,0,3,1,6,2,4,8};
+
+            //leftInd 구하기
+            while(arr[leftInd] <= pivot) {
+                leftInd++; //2
+            }
+
+        System.out.println("leftInd : " + arr[leftInd]);
+
+            //rigntInd 구하기
+            while(arr[rightInd] >= pivot) {
+                rightInd--; //2
+            }
+
+        System.out.println("rightInd : " + arr[rightInd]);
 
 
-        }
+
+
     }
 }
