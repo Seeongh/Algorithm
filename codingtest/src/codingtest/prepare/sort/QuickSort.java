@@ -1,6 +1,8 @@
 package codingtest.prepare.sort;
 
 
+import java.util.Arrays;
+
 /**
  * 퀵 정렬
  * 기준(피벗)을 설정한 후, 큰수와 작은 수를 교환한 후 리스트를 반으로 나누는 방식
@@ -44,9 +46,14 @@ public class QuickSort {
                 rightInd--; //2
             }
 
+
         System.out.println("rightInd : " + arr[rightInd]);
+            tmp = arr[leftInd];
+            arr[leftInd] = arr[rightInd];
+            arr[rightInd] = tmp;
 
 
+        Arrays.stream(arr).forEach(System.out::println);
 
 
     }
