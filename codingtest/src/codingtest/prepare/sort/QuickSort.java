@@ -24,6 +24,7 @@ public class QuickSort {
         int pivot = 0 ;
         int leftInd =  0 ;
         int rightInd = maxlen-1;
+
         int tmp = 0;
 
 
@@ -32,35 +33,31 @@ public class QuickSort {
             //{7,5,9,0,3,1,6,2,4,8};
 
             //leftInd 구하기
+            while(arr[leftInd] <= pivot) {
+                leftInd++; //2
 
-                while(arr[leftInd] <= pivot  ) {
-                    leftInd++; //2
-                }
+                System.out.println("leftInd : " + leftInd);
+            }
 
 
-                //rigntInd 구하기
-                while(arr[rightInd] >= pivot) {
-                    rightInd--; //2
-                }
+            //rigntInd 구하기
+            while(arr[rightInd] >= pivot ) {
+                rightInd--; //2
+
+                System.out.println("rightInd : " + rightInd);
+            }
 
 
             tmp = arr[leftInd];
             arr[leftInd] = arr[rightInd];
             arr[rightInd] = tmp;
-
         }
-
-        System.out.println("leftInd : " + arr[leftInd]);
-        System.out.println("rightInd : " + arr[rightInd]);
 
 //        if(arr[leftInd] <= arr[rightInd]) {
 //            tmp = arr[0];
 //            arr[0] = arr[leftInd];
 //            arr[leftInd] = pivot;
 //        }
-
-
-
         Arrays.stream(arr).forEach(System.out::println);
 
 
