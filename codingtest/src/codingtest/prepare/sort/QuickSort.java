@@ -24,27 +24,28 @@ public class QuickSort {
         int pivot = 0 ;
         int leftInd =  0 ;
         int rightInd = maxlen-1;
-
+        int ind= 0;
         int tmp = 0;
 
 
             //첫번째 인자를 pivot으로 두기
             pivot = arr[0]; //7
             //{7,5,9,0,3,1,6,2,4,8};
+            //두번쨰
+            //7,5,4,0,3,1,6,2,9,8
+
+        while(leftInd < rightInd ) {
 
             //leftInd 구하기
             while(arr[leftInd] <= pivot) {
                 leftInd++; //2
 
-                System.out.println("leftInd : " + leftInd);
             }
-
 
             //rigntInd 구하기
             while(arr[rightInd] >= pivot ) {
                 rightInd--; //2
 
-                System.out.println("rightInd : " + rightInd);
             }
 
 
@@ -53,12 +54,15 @@ public class QuickSort {
             arr[rightInd] = tmp;
         }
 
-//        if(arr[leftInd] <= arr[rightInd]) {
-//            tmp = arr[0];
-//            arr[0] = arr[leftInd];
-//            arr[leftInd] = pivot;
-//        }
-        Arrays.stream(arr).forEach(System.out::println);
+
+            tmp = arr[0];
+            arr[0] = arr[leftInd];
+            arr[leftInd] = pivot;
+
+
+        System.out.println("leftInd : " + leftInd);
+        System.out.println("rightInd : " + rightInd);
+        Arrays.stream(arr).forEach(System.out::print);
 
 
     }
