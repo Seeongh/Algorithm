@@ -24,46 +24,68 @@ public class QuickSort {
         int pivot = 0 ;
         int leftInd =  0 ;
         int rightInd = maxlen-1;
-        int ind= 0;
+
+
+         pivot_sort(pivot, leftInd,rightInd) ;
+
+
+        Arrays.stream(arr).forEach(System.out::print);
+
+    }
+
+    public static void pivot_sort(int pv, int leftInd, int rightInd) {
+
+        int tmp = 0 ;
+
+        if(leftInd >= rightInd) return  ;
+
+        int pivot = partition(pv, leftInd, rightInd);
+
+        pivot_sort(leftInd, leftInd, pv-1); //왼쪽
+        pivot_sort(pivot, pv, rightInd);
+
+    }
+
+    public static int partition(int pivot, int leftInd, int rightInd) {
         int tmp = 0;
-
-
-            //첫번째 인자를 pivot으로 두기
-            pivot = arr[0]; //7
-            //{7,5,9,0,3,1,6,2,4,8};
-            //두번쨰
-            //7,5,4,0,3,1,6,2,9,8
 
         while(leftInd < rightInd ) {
 
             //leftInd 구하기
-            while(arr[leftInd] <= pivot) {
+            while(arr[leftInd] <= arr[pivot]) {
                 leftInd++; //2
 
             }
 
             //rigntInd 구하기
-            while(arr[rightInd] >= pivot ) {
-                rightInd--; //2
+            while(arr[rightInd] >= arr[pivot] ) {
+                rightInd--; //8
 
             }
 
+            if(leftInd < rightInd) {
 
-            tmp = arr[leftInd];
-            arr[leftInd] = arr[rightInd];
-            arr[rightInd] = tmp;
+                tmp = arr[leftInd];
+                arr[leftInd] = arr[rightInd];
+                arr[rightInd] = tmp;
+
+
+                Arrays.stream(arr).forEach(System.out::print);
+
+            }
+
+            System.out.println("leftInd : " + leftInd);
+            System.out.println("rightInd : " + rightInd);
+
+
         }
 
 
-            tmp = arr[0];
-            arr[0] = arr[leftInd];
-            arr[leftInd] = pivot;
+        tmp = arr[pivot];
+        arr[pivot] = arr[rightInd];
+        arr[rightInd] = tmp;
 
-
-        System.out.println("leftInd : " + leftInd);
-        System.out.println("rightInd : " + rightInd);
-        Arrays.stream(arr).forEach(System.out::print);
-
+        return rightInd;
 
     }
 }
