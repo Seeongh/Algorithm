@@ -25,9 +25,7 @@ public class QuickSort {
         int leftInd =  0 ;
         int rightInd = maxlen-1;
 
-
          pivot_sort(pivot, leftInd,rightInd) ;
-
 
         Arrays.stream(arr).forEach(System.out::print);
 
@@ -39,53 +37,65 @@ public class QuickSort {
 
         if(leftInd >= rightInd) return  ;
 
+
         int pivot = partition(pv, leftInd, rightInd);
 
-        pivot_sort(leftInd, leftInd, pv-1); //왼쪽
-        pivot_sort(pivot, pv, rightInd);
+        pivot_sort(leftInd, leftInd, pivot-1); //왼쪽
+        pivot_sort(pivot, pivot+1, rightInd);
 
     }
 
     public static int partition(int pivot, int leftInd, int rightInd) {
         int tmp = 0;
+        int lo = leftInd;
+        int hi = rightInd;
 
-        while(leftInd < rightInd ) {
 
-            //leftInd 구하기
-            while(arr[leftInd] <= arr[pivot]) {
-                leftInd++; //2
+        System.out.println("partition+++++++++++++++++++++ : " );
+        Arrays.stream(arr).forEach(System.out::print);
+        System.out.println("");
 
-            }
+        System.out.println("leftInd : " + leftInd);
+        System.out.println("rightInd : " + rightInd);
+
+        System.out.println("pivot : " + pivot);
+        while(lo < hi ) {
 
             //rigntInd 구하기
-            while(arr[rightInd] >= arr[pivot] ) {
-                rightInd--; //8
+            while(arr[hi] >= arr[pivot] && lo < hi ) {
+                hi--; //8
+
+            }
+            //leftInd 구하기
+            while(arr[lo] <= arr[pivot] && lo < hi ) {
+                lo++; //2
 
             }
 
-            if(leftInd < rightInd) {
 
-                tmp = arr[leftInd];
-                arr[leftInd] = arr[rightInd];
-                arr[rightInd] = tmp;
+
+            System.out.println("lo : " + lo);
+            System.out.println("hi : " + hi);
+            if(lo < hi) {
+
+                tmp = arr[lo];
+                arr[lo] = arr[hi];
+                arr[hi] = tmp;
 
 
                 Arrays.stream(arr).forEach(System.out::print);
 
             }
 
-            System.out.println("leftInd : " + leftInd);
-            System.out.println("rightInd : " + rightInd);
-
 
         }
 
 
         tmp = arr[pivot];
-        arr[pivot] = arr[rightInd];
-        arr[rightInd] = tmp;
+        arr[pivot] = arr[lo];
+        arr[lo] = tmp;
 
-        return rightInd;
+        return lo;
 
     }
 }
