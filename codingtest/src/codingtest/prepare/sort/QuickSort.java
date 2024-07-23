@@ -25,30 +25,31 @@ public class QuickSort {
         int leftInd =  0 ;
         int rightInd = maxlen-1;
 
-         pivot_sort(pivot, leftInd,rightInd) ;
+         pivot_sort(leftInd,rightInd) ;
 
         Arrays.stream(arr).forEach(System.out::print);
 
     }
 
-    public static void pivot_sort(int pv, int leftInd, int rightInd) {
+    public static void pivot_sort( int leftInd, int rightInd) {
 
         int tmp = 0 ;
 
         if(leftInd >= rightInd) return  ;
 
 
-        int pivot = partition(pv, leftInd, rightInd);
+        int pivot = partition(leftInd, rightInd);
 
-        pivot_sort(leftInd, leftInd, pivot-1); //왼쪽
-        pivot_sort(pivot, pivot+1, rightInd);
+        pivot_sort(leftInd, pivot-1); //왼쪽
+        pivot_sort( pivot+1, rightInd);
 
     }
 
-    public static int partition(int pivot, int leftInd, int rightInd) {
+    public static int partition( int leftInd, int rightInd) {
         int tmp = 0;
         int lo = leftInd;
         int hi = rightInd;
+        int pivot = leftInd;
 
 
         System.out.println("partition+++++++++++++++++++++ : " );
