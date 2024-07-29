@@ -1,6 +1,7 @@
 package codingtest.prepare.sort;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * 개수 정렬
@@ -20,8 +21,16 @@ public class CountSort {
 
         Arrays.stream(arr).forEach(i -> indArr[i] = indArr[i]+1);
 
-        Arrays.stream(indArr).forEach((ind,var)-> {});
+        IntStream.range(0, indArr.length).forEach(index -> {
+            int value = indArr[index];
 
+
+            // 인덱스와 값을 출력하거나 원하는 로직을 적용
+            for(int i =0 ; i < indArr[index]; i++) {
+
+              System.out.print(index);
+            }
+        });
     }
 
 }
