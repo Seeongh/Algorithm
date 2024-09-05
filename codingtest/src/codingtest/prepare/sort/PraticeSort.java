@@ -21,9 +21,9 @@ public class PraticeSort {
                     for(int i =0 ; i<maxlen; i++) {
 
                         if(arr[index] > arr[index+i]) {
-                            tmp = arr[index+i];
-                            arr[index+i] = arr[index];
-                            arr[index] = tmp;
+//                            tmp = arr[index+i];
+//                            arr[index+i] = arr[index];
+//                            arr[index] = tmp;
                         }
 
                     }
