@@ -25,6 +25,7 @@ public class CountSort {
             int value = indArr[index];
 
 
+
             // 인덱스와 값을 출력하거나 원하는 로직을 적용
             for(int i =0 ; i < indArr[index]; i++) {
 
